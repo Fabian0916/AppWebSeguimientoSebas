@@ -4,6 +4,6 @@
 window.APP_CONFIG = {
   SUPABASE_URL: "https://hkkbbmbuqxjgtqcpbjbj.supabase.co/rest/v1/",
   SUPABASE_ANON_KEY: "sb_publishable_C_u32DyJBNs-QknJltPuhA_VVMFHoYH",
-  NOMBRE_BEBE: "L",
+  NOMBRE_BEBE: "Juan Sebastian Cheque Garnica",
   NACIMIENTO: "2026-09-02"
 };
