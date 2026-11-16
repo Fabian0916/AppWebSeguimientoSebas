@@ -626,7 +626,11 @@
     $("#login").classList.remove("hidden");
     $("#loginForm").addEventListener("submit", async (ev) => {
       ev.preventDefault(); $("#lErr").textContent = "";
-      try { await DB.signIn($("#lEmail").value.trim(), $("#lPass").value); await start(); } catch (e) { $("#lErr").textContent = "Correo o contraseña incorrectos."; }
+      try { await DB.signIn($("#lEmail").value.trim(), $("#lPass").value); await start(); } catch (e) {
+        const m = String((e && e.message) || e);
+        console.error(e);
+        $("#lErr").textContent = /invalid login/i.test(m) ? "Correo o contraseña incorrectos." : /not confirmed/i.test(m) ? "El correo aún no está confirmado en Supabase." : /api key|apikey|jwt/i.test(m) ? "La clave de Supabase en config.js no es válida." : /fetch|network|failed/i.test(m) ? "No se pudo conectar con Supabase. Revisa el SUPABASE_URL en config.js." : "Error: " + m;
+      }
     });
   }
   init();
